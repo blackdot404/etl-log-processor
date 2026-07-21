@@ -6,9 +6,9 @@
 [![SQL Server](https://img.shields.io/badge/SQL%20Server-Database-CC292B.svg)](https://www.microsoft.com/sql-server)
 
 ## 📌 Sobre o Projeto
-Este projeto consiste em um pipeline de Engenharia de Dados (ETL) desenvolvido em Python para automatizar o tratamento de planilhas de log e viabilizar a ingestão eficiente em um banco de dados **SQL Server**. 
+Este projeto consiste em um pipeline de Engenharia de Dados (ETL) desenvolvido em Python para automatizar o tratamento de planilhas de log e viabilizar a inserção eficiente em um banco de dados **SQL Server**. 
 
-O script extrai dados de arquivos Excel, realiza limpeza e transformações complexas (como conversão de formatos de tempo). Além disso, padroniza o *schema* das colunas de forma dinâmica, exporta um arquivo CSV local para auditoria (camada *Staging*) e realiza a inserção direta no banco de dados via rede utilizando abstração ORM.
+O script extrai dados de arquivos Excel, realiza limpeza e transformações (como conversão de formatos de tempo). Além disso, padroniza o *schema* das colunas de forma dinâmica, exporta um arquivo CSV local para auditoria (camada *Staging*) e realiza a inserção direta no banco de dados via rede utilizando abstração ORM.
 
 ## 🎯 O Desafio Técnico e a Solução
 Durante a integração entre o ambiente de processamento (Linux) e o banco de dados (SQL Server / Windows), surgiram desafios específicos de formatação e performance que foram solucionados neste projeto:
@@ -16,7 +16,7 @@ Durante a integração entre o ambiente de processamento (Linux) e o banco de da
 * **Vetorização com Pandas:** A planilha original possuía mais de 40 colunas de tempo no formato `HH:MM:SS`. Para garantir alta performance, a transformação de horas para segundos foi feita utilizando operações vetorizadas do Pandas, evitando loops lentos.
 * **Tratamento de Dados Ausentes:** Valores inválidos (como `---`) foram tratados e convertidos para `0`, garantindo a integridade dos tipos numéricos no banco de dados.
 * **Padronização de Schema:** Os cabeçalhos originais em Excel possuíam espaços e pontos que quebravam a inserção no SQL Server. Foi implementada uma limpeza via Expressões Regulares (*Regex*) para substituir esses caracteres por *underline* (`_`), garantindo compatibilidade total.
-* **Inserção Segura via Rede (Linux -> SQL Server):** Configuração robusta dos drivers Microsoft ODBC 17 no Linux, integrados com SQLAlchemy e `pyodbc`. A conexão utiliza *URL Encoding* para senhas complexas e validação de certificados SSL flexibilizada (`TrustServerCertificate=yes`), eliminando a necessidade de transferir arquivos físicos para o servidor do banco.
+* **Inserção Segura via Rede (Linux -> SQL Server):** Configuração robusta dos drivers Microsoft ODBC 17 no Linux, integrados com SQLAlchemy e `pyodbc`. Validação de certificados SSL flexibilizada (`TrustServerCertificate=yes`), eliminando a necessidade de transferir arquivos físicos para o servidor do banco.
 
 ## 📁 Estrutura do Repositório
 
@@ -62,6 +62,8 @@ DB_SERVER=seu_servidor_ou_ip
 DB_NAME=seu_banco_de_dados
 DB_USER=seu_usuario
 DB_PASS=sua_senha_super_secreta
+DB_TABLE=sua_tabela
+DB_SCHEMA='dbo'
 ```
 
 ### 3. Instalação das dependências
