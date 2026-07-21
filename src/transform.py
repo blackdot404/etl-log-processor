@@ -29,7 +29,7 @@ def transform_data(df):
     df = df.drop(columns=column_remove, errors='ignore')
 
     # Definindo a data para filtra (D-1)
-    yday = datetime.now() - timedelta(days=3)
+    yday = datetime.now() - timedelta(days=1)
     num_day = yday.day
 
     df[column_day] = pd.to_numeric(df[column_day], errors='coerce')
