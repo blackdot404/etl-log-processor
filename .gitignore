@@ -1,0 +1,29 @@
+# ambiente virtual
+.venv/
+env/
+venv/
+dist/
+build/
+
+# cache do python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# arquivos sensiveis do processo de dados
+*.csv
+*.xlsx
+*.xls
+
+# logs do sistema
+logs/
+*.log
+
+# variaveis de ambiente
+.env
+.env.local
+
+# configurações do editor
+.vscode/
+.idea/

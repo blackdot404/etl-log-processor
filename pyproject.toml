@@ -1,0 +1,42 @@
+[project]
+name = "bot-base-log"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "blackdot404",email = "blackstv11@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.14,<4.0"
+dependencies = [
+    "pandas (>=3.0.3,<4.0.0)",
+    "openpyxl (>=3.1.5,<4.0.0)",
+    "sqlalchemy (>=2.0.51,<3.0.0)",
+    "pyodbc (>=5.3.0,<6.0.0)",
+    "python-dotenv (>=1.2.2,<2.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[dependency-groups]
+dev = [
+    "ruff (>=0.15.17,<0.16.0)",
+    "typos (>=1.47.2,<2.0.0)"
+]
+
+[tool.ruff]
+line-length = 85
+extend-exclude = ['migrations']
+
+[tool.ruff.lint]
+preview = true
+select = ['I', 'F', 'E', 'W', 'PL', 'PT']
+
+[tool.ruff.format]
+preview = true
+quote-style = 'single'
+
+[tool.typos.files]
+extend-exclude = ["*.md"]
